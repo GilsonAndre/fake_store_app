@@ -1,16 +1,3 @@
 # fake_store_app
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Projeto com finalidade de complementar meu portifólio utilizando o Pattern Bloc para separar a regra de negócio da Interface de usuário (UI), e aplicando a API "Fakestore" https://fakestoreapi.com/docs para obter os produtos. 
