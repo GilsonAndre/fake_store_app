@@ -1,5 +1,6 @@
 import 'package:fake_store_app/data/bloc/store_bloc.dart';
 import 'package:fake_store_app/ui/resources/strings.dart';
+import 'package:fake_store_app/ui/screens/cart_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -37,6 +38,25 @@ class __StoreScreenViewState extends State<_StoreScreenView> {
 
   void _removeFromCart(int cartId) {
     context.read<StoreBloc>().add(StoreProductRemoveFromCart(cartId));
+  }
+
+  void _viewCart() {
+    Navigator.push(
+      context,
+      PageRouteBuilder(
+        transitionsBuilder: (_, animation, __, child) {
+          return SlideTransition(
+            position: Tween(begin: const Offset(0, 1), end: Offset.zero)
+                .animate(animation),
+            child: BlocProvider.value(
+              value: context.read<StoreBloc>(),
+              child: child,
+            ),
+          );
+        },
+        pageBuilder: (_,__,___) => const CartScreen(),
+      ),
+    );
   }
 
   @override
@@ -144,8 +164,29 @@ class __StoreScreenViewState extends State<_StoreScreenView> {
           },
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+      floatingActionButton: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          FloatingActionButton(
+            onPressed: _viewCart,
+            child: const Icon(Icons.shopping_cart),
+          ),
+          BlocBuilder<StoreBloc, StoreState>(
+            builder: (context, state) {
+              return Positioned(
+                bottom: 40,
+                right: -4,
+                child: CircleAvatar(
+                  radius: 12,
+                  backgroundColor: Colors.tealAccent,
+                  child: Text(
+                    state.cartId.length.toString(),
+                  ),
+                ),
+              );
+            },
+          ),
+        ],
       ),
     );
   }
