@@ -8,6 +8,8 @@ part 'store_state.dart';
 class StoreBloc extends Bloc<StoreEvent, StoreState> {
   StoreBloc() : super(StoreState()) {
     on<StoreProductRequest>(_handleStoreProductRequest);
+    on<StoreProductAddedToCart>(_handleStoreProductAddedToCart);
+    on<StoreProductRemoveFromCart>(_handleStoreProductRemoveFromCart);
   }
 
   final DioRepository dioRepository = DioRepository();
@@ -38,4 +40,14 @@ class StoreBloc extends Bloc<StoreEvent, StoreState> {
       );
     }
   }
+
+  Future<void> _handleStoreProductAddedToCart(
+    StoreProductAddedToCart event,
+    Emitter<StoreState> emit,
+  ) async {}
+
+  Future<void> _handleStoreProductRemoveFromCart(
+    StoreProductRemoveFromCart event,
+    Emitter<StoreState> emit,
+  ) async {}
 }
