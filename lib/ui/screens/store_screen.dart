@@ -31,8 +31,14 @@ class _StoreScreenView extends StatefulWidget {
 }
 
 class __StoreScreenViewState extends State<_StoreScreenView> {
+  void _addToCart(int cartId) {
+    context.read<StoreBloc>().add(StoreProductAddedToCart(cartId));
+  }
 
-  
+  void _removeFromCart(int cartId) {
+    context.read<StoreBloc>().add(StoreProductRemoveFromCart(cartId));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,6 +86,7 @@ class __StoreScreenViewState extends State<_StoreScreenView> {
                 ),
                 itemBuilder: (context, index) {
                   final product = state.products[index];
+                  final inCart = state.cartId.contains(product.id);
                   return Card(
                     child: Column(
                       children: [
@@ -100,14 +107,32 @@ class __StoreScreenViewState extends State<_StoreScreenView> {
                           ),
                         ),
                         OutlinedButton(
-                          onPressed: () {},
-                          child: const Row(
-                            children: [
-                              Icon(Icons.add_shopping_cart),
-                              SizedBox(width: 5,),
-                              Text(Strings.addToCart),
-                            ],
+                          onPressed: inCart
+                              ? () => _removeFromCart(product.id)
+                              : () => _addToCart(product.id),
+                          style: ButtonStyle(
+                            backgroundColor: inCart
+                                ? const MaterialStatePropertyAll<Color>(
+                                    Colors.black12,
+                                  )
+                                : null,
                           ),
+                          child: Row(
+                              children: inCart
+                                  ? [
+                                      const Icon(Icons.remove_shopping_cart),
+                                      const SizedBox(
+                                        width: 5,
+                                      ),
+                                      const Text(Strings.removeFromCart),
+                                    ]
+                                  : [
+                                      const Icon(Icons.add_shopping_cart),
+                                      const SizedBox(
+                                        width: 5,
+                                      ),
+                                      const Text(Strings.addToCart),
+                                    ]),
                         ),
                       ],
                     ),
@@ -118,6 +143,9 @@ class __StoreScreenViewState extends State<_StoreScreenView> {
             return const SizedBox();
           },
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
       ),
     );
   }
