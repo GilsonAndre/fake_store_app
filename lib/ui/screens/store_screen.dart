@@ -54,7 +54,7 @@ class __StoreScreenViewState extends State<_StoreScreenView> {
             ),
           );
         },
-        pageBuilder: (_,__,___) => const CartScreen(),
+        pageBuilder: (_, __, ___) => const CartScreen(),
       ),
     );
   }
@@ -74,7 +74,7 @@ class __StoreScreenViewState extends State<_StoreScreenView> {
                     onPressed: () {
                       context.read<StoreBloc>().add(StoreProductRequest());
                     },
-                    child: const Text(Strings.buttonInitial),
+                    child: const Text(Strings.buttonBackShopping),
                   ),
                 ],
               );
