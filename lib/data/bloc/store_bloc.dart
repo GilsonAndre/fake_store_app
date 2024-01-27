@@ -44,10 +44,22 @@ class StoreBloc extends Bloc<StoreEvent, StoreState> {
   Future<void> _handleStoreProductAddedToCart(
     StoreProductAddedToCart event,
     Emitter<StoreState> emit,
-  ) async {}
+  ) async {
+    emit(
+      state.copyWith(
+        cartId: {...state.cartId, event.cartId},
+      ),
+    );
+  }
 
   Future<void> _handleStoreProductRemoveFromCart(
     StoreProductRemoveFromCart event,
     Emitter<StoreState> emit,
-  ) async {}
+  ) async {
+    emit(
+      state.copyWith(
+        cartId: {...state.cartId}..remove(event.cartId),
+      ),
+    );
+  }
 }
