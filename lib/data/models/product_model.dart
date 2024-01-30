@@ -5,7 +5,6 @@ class ProductModel {
   final String description;
   final dynamic price;
   final String category;
- 
 
   ProductModel({
     required this.id,
@@ -14,7 +13,5 @@ class ProductModel {
     required this.description,
     required this.price,
     required this.category,
-    
   });
 }
- 

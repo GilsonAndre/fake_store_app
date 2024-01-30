@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fake_store_app/data/bloc/store_bloc.dart';
@@ -37,33 +36,28 @@ class _DetailsScreenState extends State<DetailsScreen> {
       body: BlocBuilder<StoreBloc, StoreState>(
         builder: (context, state) {
           return ListView(
+            padding: const EdgeInsets.all(10.0),
             children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Text(widget.category),
-                      Text(widget.price.toString()),
-                    ],
-                  ),
-                  Text(widget.title),
-                  Image.network(widget.image),
-                  //Text(products.description),
-                  Text(widget.description),
-                  OutlinedButton(
-                    onPressed: () {},
-                    child: const Text(Strings.buttonBuy),
-                  ),
-                  OutlinedButton(
-                    onPressed: () {
-                      context
-                          .read<StoreBloc>()
-                          .add(StoreProductAddedToCart(widget.id));
-                    },
-                    child: const Text(Strings.addToCart),
-                  ),
-                ],
+              Text(
+                widget.title,
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+              Image.network(widget.image),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
+                child: Text(
+                  'Price \$${widget.price.toString()}',
+                  style: Theme.of(context).textTheme.headlineMedium, 
+                ),
+              ),
+              Text(widget.description,
+                  style: Theme.of(context).textTheme.bodyLarge),
+              const SizedBox(
+                height: 10,
+              ),
+              OutlinedButton(
+                onPressed: () {},
+                child: const Text(Strings.buttonBuy),
               ),
             ],
           );
