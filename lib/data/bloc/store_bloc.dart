@@ -33,6 +33,7 @@ class StoreBloc extends Bloc<StoreEvent, StoreState> {
         ),
       );
     } catch (e) {
+      print('o erro é $e');
       emit(
         state.copyWith(
           productStatus: StoreResquest.requestError,

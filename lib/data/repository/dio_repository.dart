@@ -12,13 +12,15 @@ class DioRepository {
     final response = await _dio.get('');
 
     return (response.data as List)
-        .map(
-          (map) => ProductModel(
-            id: map['id'],
-            title: map['title'],
-            image: map['image'],
-          ),
-        )
+        .map((map) => ProductModel(
+              id: map['id'],
+              title: map['title'],
+              image: map['image'],
+              description: map['description'],
+              price: map['price'],
+              category: map['category'],
+             
+            ))
         .toList();
   }
 }

@@ -7,4 +7,5 @@ class Strings {
   static const addToCart = 'Add To Cart';
   static const removeFromCart = 'Remove From Cart';
   static const cartEmpty = 'Your cart is empty lets go shopping!!';
+  static const buttonBuy = 'Purchase';
 }
